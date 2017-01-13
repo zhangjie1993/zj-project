@@ -10,10 +10,12 @@
 		var timer=null;
 		var submit_btn = document.getElementsByClassName("submit_btn")[0];
 		var barrage_content = document.getElementsByClassName("barrage_content")[0];
+		var barrage_list = document.getElementsByClassName("barrage_list")[0];
 		var cancel_btn = document.getElementsByClassName("cancel_btn")[0];
-		submit_btn.onclick = function(){
+		var checkbox = document.getElementsByClassName("checkbox")[0].getElementsByTagName("input")[0];
+		submit_btn.onclick = function() {
 			clearInterval(timer);
-			var input = document.getElementsByTagName("input")[0];
+			var input = document.getElementById("barrage_btn").getElementsByTagName("input")[0];
 			var new_content = document.createElement("div");
 			new_content.className = "barrage_text";
 			new_content.innerHTML =input.value;
@@ -23,12 +25,12 @@
 				new_content.style.top = "400px";
 			}*/
 			new_content.style.color = "#" + randomColor();
-			barrage_content.appendChild(new_content);
+			barrage_list.appendChild(new_content);
 			timer = setInterval(move,20);
 			input.value = "";
 			/*move();*/
 		};
-		function move(){
+		function move() {
 			var barrage_c = document.getElementsByClassName("barrage_text");
 			for(var i = 0;i<barrage_c.length;i++){
 				newarr.push(barrage_c[i].offsetLeft);
@@ -39,7 +41,7 @@
 				}
 			}
 		}
-		function randomColor(){
+		function randomColor() {
 		    var color = Math.ceil(Math.random( ) * 16777215).toString(16);
 		        while(color.length<6){
 	                color="0"+color;
@@ -49,14 +51,27 @@
         cancel_btn.onclick = function() {
         	barrage_content.innerHTML = "";
         };
+        checkbox.onclick = function () {
+        	console.log(checkbox.checked);
+        	if(checkbox.checked){
+        		barrage_list.style.display = "block";
+        	}else {
+        		barrage_list.style.display = "none";
+        	}
+        };
 	}
 	</script>
 </head>
 <body>
 	<div class="barrage">
+		<div class="checkbox">
+		    <input type="checkbox" checked/>
+		    <label></label>
+	    </div>
 		<div class="barrage_content">
+			<div class="barrage_list"></div>
 		</div>
-		<div class="barrage_btn">
+		<div class="barrage_btn" id="barrage_btn">
 			<input type="text" name="text">
 			<button type="submit" class="submit_btn">发送</button>
 			<button type="cancel" class="cancel_btn">清屏</button>
