@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>全选</title>
+	<link rel="stylesheet" type="text/css" href="checkbox.css">
+	
+</head>
+<body>
+	<div class="select_b">
+		<input type="checkbox" onclick="selectAll()" class="select_all">全选
+		<input type="checkbox" value="" onclick="reverseSelect()" class="reverse_select">反选
+	</div>
+	</div>
+		<div ><input type="checkbox" value="" class="select_c">1</div>
+		<div><input type="checkbox" value="" class="select_c">2</div>
+		<div><input type="checkbox" value="" class="select_c">3</div>
+		<div><input type="checkbox" value="" class="select_c">4</div>
+	</div>
+	<script type="text/javascript">
+		var select_c = document.getElementsByClassName("select_c");
+		var select_all = document.getElementsByClassName("select_all");
+		var reverse_select = document.getElementsByClassName("reverse_select");
+		function selectAll () {
+			for(var i = 0 ;i<select_c.length;i++){
+				if(select_all[0].checked == true){
+					select_c[i].checked = true;
+				}
+			}
+		}
+		function reverseSelect(){
+			for(var i = 0 ;i<select_c.length;i++){
+				if(reverse_select[0].checked == true){
+					if(select_all[0].checked == true){
+						select_c[i].checked = true;
+					}
+				}else {
+					select_c[i].checked = false;
+				}
+			}
+		}
+	</script>
+</body>
+</html>
